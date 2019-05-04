@@ -1,0 +1,35 @@
+{
+  "name": "Game",
+  "plural": "games",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "status": {
+      "type": "string",
+      "default": "proccessing"
+    },
+    "maxSets": {
+      "type": "number",
+      "required": true,
+      "default": 1
+    }
+  },
+  "validations": [],
+  "relations": {
+    "players": {
+      "type": "hasAndBelongsToMany",
+      "model": "Player",
+      "foreignKey": ""
+    },
+    "gameSets": {
+      "type": "hasMany",
+      "model": "GameSet",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

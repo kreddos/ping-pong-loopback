@@ -1,0 +1,27 @@
+{
+  "name": "Player",
+  "plural": "players",
+  "base": "User",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "games": {
+      "type": "hasAndBelongsToMany",
+      "model": "Game",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

@@ -1,0 +1,26 @@
+{
+  "name": "GameSet",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "points": {
+      "type": "object"
+    },
+    "position": {
+      "type": "number"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "game": {
+      "type": "belongsTo",
+      "model": "Game",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}
