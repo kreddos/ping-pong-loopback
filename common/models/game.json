@@ -13,8 +13,7 @@
     },
     "maxSets": {
       "type": "number",
-      "required": true,
-      "default": 1
+      "required": true
     }
   },
   "validations": [],
