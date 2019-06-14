@@ -1,9 +1,8 @@
-'use strict';
 const createError = require('http-errors');
 
-module.exports = function(Game) {
+module.exports = function (Game) {
   Game.newGame = async (data) => {
-    const {firstPlayerId, secondPlayerId} = data.players;
+    const { firstPlayerId, secondPlayerId } = data.players;
 
     if (!firstPlayerId || !secondPlayerId) {
       throw createError(400, 'fields "firstPlayerId" and "secondPlayerId" are required');
@@ -18,18 +17,18 @@ module.exports = function(Game) {
   };
   Game.remoteMethod('newGame', {
     accepts: { arg: 'data', type: 'object', http: { source: 'body' } },
-    returns: {arg: 'game', type: 'object', root: true},
-    http: {path: '/new-game', verb: 'post'}
+    returns: { arg: 'game', type: 'object', root: true },
+    http: { path: '/new-game', verb: 'post' },
   });
 
-  Game.prototype.addSet = async function (set) {
+  Game.prototype.addSet = async function addSet(set) {
     const setsCount = await this.gameSets.count();
     if (this.maxSets <= setsCount) {
-      throw createError(400, `you can't create set. The game have all sets`)
+      throw createError(400, 'you can\'t create set. The game have all sets');
     }
 
     if (this.status === 'end') {
-      throw createError(400, `you can't create set. The game is end`)
+      throw createError(400, 'you can\'t create set. The game is end');
     }
 
 
@@ -42,11 +41,11 @@ module.exports = function(Game) {
 
     const game = this.toJSON();
     return { ...game, gameSets };
-  }
+  };
 
   Game.remoteMethod('prototype.addSet', {
     accepts: { arg: 'data', type: 'GameSet', http: { source: 'body' } },
-    returns: {arg: 'game', type: 'object', root: true},
-    http: {path: '/add-set', verb: 'post'}
+    returns: { arg: 'game', type: 'object', root: true },
+    http: { path: '/add-set', verb: 'post' },
   });
 };
